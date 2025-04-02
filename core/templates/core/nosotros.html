@@ -1,0 +1,44 @@
+
+<div class="">
+    {%extends 'core/base.html' %}
+    {%load static%}
+    {%block content%}
+</div>
+<main class="main">
+    <section class="group--color">
+        <div class="container" style="border: rgb(255, 123, 0) solid; ">
+            <h2 class="main__title">Un poco más de MaFran</h2>
+            <p class="main_txt">
+            </p>
+        </div>
+    </section>
+    <section class="group main__about_description">
+        <div class="container container--flex">
+            <div class="column column--50">
+                <h3 class="column__title">¿Qué somos?</h3>
+                <p class="column__txt">Somos una empresa dedicada al comercio de productos ferreteria e insumos de aseo hogar
+                    Distribuyendo las mejores marcas para tener la mejor calidad en nuestros productos.</p>
+            </div>
+            <div class="column column--50">
+                <img src="img/index1.jpg" alt="aaaaaa">
+            </div>
+        </div>
+    </section><br>
+    <section class="group main__about_description">
+        <div class="container container--flex">
+            <div class="column column--50">
+                <h3 class="column__title">¿Deseas hacer un pedido?</h3>
+                <p class="column__txt">ve al Whatsapp con el numero: (+56) 997833108 y realiza un pedido, o haz click en el boton en la derecha para ir al chat de Whatsapp</p>
+            </div>
+        </div>
+        <script>
+            document.getElementById('whatsapp-chat-button').addEventListener('click', function() {
+            var whatsappUrl = 'https://wa.me/997833108'; /*esta con el numero del mario por ahora*/
+            window.open(whatsappUrl, '_blank');
+            });
+        </script>
+    </section>
+</main>
+<br>
+<hr>
+{%endblock%}

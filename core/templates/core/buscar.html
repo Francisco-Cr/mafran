@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{{ error }}
+
+{% block content %}
+<section">
+    {%if results %}
+    <h1>Buscaste: "{{busqueda}}"</h1>
+    <div class="container">
+        <div class="row card-container">
+            {% for producto in results %}
+            <div class="col-md-4 mb-4">
+                <div class="card fixed-height-card">
+                    <div class="card-container">
+                        <div class="card-body">
+                            <div style="background-color: red; width: 100%; text-align: center; color: yellow;">
+                                <h1 class="card-title">{{ producto.nombre }}</h1>
+                            </div>
+                            {% if producto.imagen %}
+                            <figure>
+                                <img src="{{ producto.imagen.url }}" alt="Sin imagen" class="producto">
+                            </figure>
+                            {% endif %}
+                            <h2>Descripción.</h2>
+                            <p>{{ producto.caracteristicas }}</p><br>
+                            <h2>Precios:<br> ${{ producto.precio }}</h2>
+                            <h2>${{ producto.precio_unidad }} c/u</h2><br>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {%endfor%}
+        </div>        
+        {%else%}
+        <section class="group main__about_description">
+            <div class="container container--flex">
+                <div class="column column--50">
+                    <h1>No has buscado nada...o no hemos encontrado su busqueda</h1><br>
+                    <h2>Quizas es que buscaste en la seccion equivocada, por ejemplo si usted desea buscar un producto de ferretería debe buscarlo en su respectiva página</h2><br>
+                </div>
+                <div class="column column--50">
+                    <h2 class="column__txt">La siguiente imagen corresponde a una busqueda exitosa:</h2>
+                    <img src="{%static 'core/img/ejemplo.png'%}" alt="ejemplo" >
+                </div>
+            </div>
+        </section>   
+    {%endif%}
+        </div>
+    </div>
+</section>
+{%endblock%}

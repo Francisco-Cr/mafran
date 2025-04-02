@@ -1,0 +1,55 @@
+{%extends 'core/base.html' %}
+{%load static%}
+{%block content%}
+
+<section class="banner">
+    <img src="{% static 'core/img/bannerAdh.jpg' %}" alt="bannerAdh.jpg" class="banner__img">
+    <div class="banner__content">Adhesivos</div>
+</section>
+<main class="main">
+    <div class="container">
+        <div class="row card-container">
+            {% for a in adhesivo %}
+            <div class="col-md-4 mb-4">
+                <div class="card fixed-height-card">
+                    <div class="card-container">
+                        <div class="card-body">
+                            <div style="background-color: red; width: 100%; text-align: center; color: yellow;">
+                                <h1 class="card-title">{{ a.nombre }}</h1>
+                            </div>
+                            {% if a.imagen %}
+                            <figure>
+                                <img src="{{ a.imagen.url }}" alt="Sin imagen" class="producto">
+                            </figure>
+                            {% else %}
+                            Sin imagen
+                            {% endif %}
+                            <h2>Descripción.</h2>
+                            <td>{{ a.caracteristicas }}</td><br>
+                            <td><h2>Precios:<br> ${{ a.precio }}</h2></td>
+                            <td><h2>${{ a.precio_unidad }} c/u</h2></td><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <span>
+            Page {{ adhesivo.number }} of {{ adhesivo.paginator.num_pages }}
+        </span>
+        <ul class="pagination">
+            {% if adhesivo.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{adhesivo.next_page_number}}">Siguiente</a></li>
+            {% endif %}
+    
+            {% if adhesivo.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">Primera</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{adhesivo.previous_page_number}}">Anterior</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</main>
+{% endblock %}
+{% block footer %}{% endblock %}

@@ -1,0 +1,60 @@
+{%extends 'core/base.html'%}
+{%load static%}
+{%block content%}
+
+<section class="banner">
+    <img src="{% static 'core/img/bannerAseo.jpg' %}" alt="bannerAseo.jpg" class="banner__img">
+    <div class="banner__content">Aseo</div>
+</section>
+<main class="main">
+    {%block searchbar%}
+    {%endblock%}
+    <div class="container">
+        <div class="row card-container">
+            {% for a in aseo %}
+            <div class="col-md-4 mb-4">
+                <div class="card fixed-height-card">
+                    <div class="card-container">
+                        <div class="card-body">
+                            <div style="background-color: red; width: 100%; text-align: center; color: yellow;">
+                                <h1 class="card-title">{{ a.nombre }}</h1>
+                            </div>
+                            {% if a.imagen %}
+                            <figure>
+                                <img src="{{ a.imagen.url }}" alt="Sin imagen" class="producto">
+                            </figure>
+                            {% else %}
+                            Sin imagen
+                            {% endif %}
+                            <h2>Descripción.</h2>
+                            <td>{{ a.caracteristicas }}</td><br>                            
+                            <td><h2>{{ a.precio_unidad }}c/u</h2></td>      
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        const data='{{qs_json}}'
+        console.log(data)
+    </script>
+    <nav aria-label="Page navigation example">
+        <span>
+            Page {{ aseo.number }} of {{ aseo.paginator.num_pages }}
+        </span>
+        <ul class="pagination">
+            {% if aseo.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{aseo.next_page_number}}">Siguiente</a></li>
+            {% endif %}
+    
+            {% if aseo.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">Primera</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{aseo.previous_page_number}}">Anterior</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</main>
+{% endblock %}
+{% block footer %}{% endblock %}
