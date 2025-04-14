@@ -6,7 +6,7 @@
             "config": {
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.9"
-            } //ver la version de python
+            } //ver la version de python=3.12
         }
     ],
     "routes": [
