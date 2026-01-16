@@ -1,18 +1,18 @@
 {
     "builds": [
         {
-            "src": "core/wsgi.py",
+            "src": "pag1/wsgi.py",
             "use": "@vercel/python",
             "config": {
                 "maxLambdaSize": "15mb",
-                "runtime": "python3.9"
-            } //ver la version de python=3.12
+                "runtime": "python3.12.0"
+            }
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "core/wsgi.py"
+            "dest": "pag1/wsgi.py"
         }
     ]
 }
